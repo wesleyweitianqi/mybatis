@@ -1,24 +1,26 @@
 package com.example.mybatis;
 
-import static org.junit.Assert.assertTrue;
-
 import java.io.Reader;
 import java.sql.Connection;
 
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Test;
 
 /**
  * Unit test for simple App.
  */
-public class AppTest {
+public class mybatisTest {
 
     @Test
     public void testSqlSessionFactory() {
-        Reader reader = Resources.getResourceAsReader("mybatis-config.xml");
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
-        System.out.println("SessionFactory加载成功");
         SqlSession sqlSession = null;
         try {
+            Reader reader = Resources.getResourceAsReader("mybatis-config.xml");
+            SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+            System.out.println("SessionFactory loading successfully");
 
             sqlSession = sqlSessionFactory.openSession();
 
